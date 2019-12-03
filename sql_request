@@ -1,0 +1,208 @@
+CREATE TABLE employe (
+     employe_id INT(10) UNSIGNED NOT NULL
+         AUTO_INCREMENT PRIMARY KEY COMMENT 'employee_ID',
+     first_name varchar(127) NOT NULL COMMENT 'first name',
+     last_name varchar(127) NOT NULL COMMENT 'last name'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='employee';
+
+DROP TABLE employe;
+
+CREATE TABLE position (
+      position_id INT(10) UNSIGNED NOT NULL
+         AUTO_INCREMENT PRIMARY KEY COMMENT 'position id',
+      position_name varchar(127) NOT NULL COMMENT 'position name',
+      is_drive BIT NOT NULL COMMENT 'is_drive'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='position';
+
+CREATE TABLE salary (
+      item_id INT(10) UNSIGNED NOT NULL
+          AUTO_INCREMENT PRIMARY KEY COMMENT 'salary item id',
+      salary_date DATE NOT NULL COMMENT 'salary date',
+      employe_id INT(10) UNSIGNED NOT NULL COMMENT 'employee id',
+      salary_sum decimal(20, 6) NOT NULL COMMENT 'salary sum'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='salary';
+
+CREATE TABLE transport_type (
+    transport_type_id INT(10) UNSIGNED NOT NULL
+         AUTO_INCREMENT PRIMARY KEY COMMENT 'transport_type',
+    transport_type_name varchar(127) NOT NULL COMMENT 'transport_type name'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='transport_type';
+
+CREATE TABLE transport (
+    transport_id INT(10) UNSIGNED NOT NULL
+        AUTO_INCREMENT PRIMARY KEY COMMENT 'transport',
+    transport_type_id INT(10) UNSIGNED NOT NULL COMMENT 'transport_type id',
+    transport_number varchar(127) NOT NULL COMMENT 'transport_number'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='transport';
+
+DROP TABLE transport;
+
+CREATE TABLE job (
+    job_item_id INT(10) UNSIGNED NOT NULL
+        AUTO_INCREMENT PRIMARY KEY COMMENT 'job item id',
+    job_bdate DATE NOT NULL COMMENT 'job bdate',
+    job_edate DATE NOT NULL COMMENT 'job edate',
+    employe_id INT(10) UNSIGNED NOT NULL COMMENT 'employee id',
+    position_id INT(10) UNSIGNED NOT NULL COMMENT 'position id'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='job';
+
+DROP TABLE income;
+
+CREATE TABLE income (
+    income_item_id INT(10) UNSIGNED NOT NULL
+         AUTO_INCREMENT PRIMARY KEY COMMENT 'income item id',
+    income_date DATE NOT NULL COMMENT 'income date',
+    employe_id INT(10) UNSIGNED NOT NULL COMMENT 'employee id',
+    transport_id INT(10) UNSIGNED NOT NULL COMMENT 'transport id',
+    income_sum decimal(20, 6) NOT NULL COMMENT 'income sum'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='income';
+
+INSERT INTO employe (first_name, last_name) VALUES
+('Elvin', 'Thomas'),
+('Kent', 'Peacock'),
+('Anna', 'Ross'),
+('Augusta', 'Walter'),
+('Audrey', 'Smith'),
+('Allan', 'Butler'),
+('Carla', 'Williams'),
+('Claudia', 'Sinclair'),
+('Deborah', 'Waite'),
+('Andrew', 'Grant');
+
+INSERT INTO position (position_name, is_drive) VALUES
+('Car mechanic', false),
+('Manager', false),
+('driver', true),
+('conductor', false),
+('accountant', false);
+
+INSERT INTO transport_type (transport_type_name) VALUES
+('trolley bus'),('bus'),('car');
+
+INSERT INTO transport (transport_type_id, transport_number) VALUES
+(1, 'tb 1'),
+(1, 'tb 2'),
+(1, 'tb 3'),
+(1, 'tb 4'),
+(1, 'tb 5'),
+(2, 'b 1'),
+(2, 'b 2'),
+(2, 'b 3'),
+(2, 'b 4'),
+(2, 'b 5'),
+(3, 'c 1'),
+(3, 'c 2'),
+(3, 'c 3'),
+(3, 'c 4'),
+(3, 'c 5');
+
+INSERT INTO salary (salary_date, employe_id, salary_sum) VALUES
+('2019-10-22', 1, 6000.00),
+('2019-09-22', 1, 3500.00),
+('2019-08-22', 1, 4000.00),
+('2019-10-22', 2, 10000.00),
+('2019-09-22', 2, 9000.00),
+('2019-08-22', 2, 8700.00),
+('2019-10-22', 3, 6000.00),
+('2019-09-22', 3, 6000.00),
+('2019-08-22', 3, 6000.00),
+('2019-10-22', 4, 5000.00),
+('2019-09-22', 4, 4800.00),
+('2019-08-22', 4, 4600.00),
+('2019-10-22', 5, 7500.00),
+('2019-09-22', 5, 7400.00),
+('2019-08-22', 5, 7100.00),
+('2019-10-22', 6, 5150.00),
+('2019-09-22', 6, 5050.00),
+('2019-08-22', 6, 4800.00),
+('2019-10-22', 7, 12000.00),
+('2019-09-22', 7, 11800.00),
+('2019-08-22', 7, 10000.00),
+('2019-10-22', 8, 5800.00),
+('2019-09-22', 8, 5400.00),
+('2019-08-22', 8, 4800.00),
+('2019-10-22', 9, 6000.00),
+('2019-09-22', 9, 4600.00),
+('2019-08-22', 9, 4200.00),
+('2019-10-22', 10, 8700.00),
+('2019-09-22', 10, 8400.00),
+('2019-08-22', 10, 7900.00);
+
+INSERT INTO job (job_bdate, job_edate, employe_id, position_id) VALUES
+('2019-10-01', '2020-10-01', 1, 1),
+('2019-10-01', '2020-10-01', 2, 5),
+('2019-10-01', '2020-10-01', 3, 2),
+('2019-10-01', '2020-10-01', 4, 3),
+('2019-10-01', '2020-10-01', 5, 3),
+('2019-10-01', '2020-10-01', 6, 3),
+('2019-10-01', '2020-10-01', 7, 3),
+('2019-10-01', '2020-10-01', 8, 3),
+('2019-10-01', '2020-10-01', 9, 3),
+('2019-10-01', '2020-10-01', 10, 3);
+
+INSERT INTO income (income_date, employe_id, transport_id, income_sum) VALUES
+('2019-10-23', 4, 6, 60000.00),
+('2019-09-23', 5, 7, 35000.00),
+('2019-10-23', 6, 8, 87000.00),
+('2019-09-23', 7, 9, 84000.00),
+('2019-08-23', 8, 10, 79000.00),
+('2019-08-23', 9, 1, 42000.00),
+('2019-08-23', 10, 2, 38000.00),
+
+('2019-10-24', 4, 6, 55000.00),
+('2019-09-24', 5, 7, 37000.00),
+('2019-10-24', 6, 8, 85000.00),
+('2019-09-24', 7, 9, 82400.00),
+('2019-08-24', 8, 10, 92000.00),
+('2019-08-24', 9, 1, 39000.00),
+('2019-08-24', 10, 2, 35000.00),
+
+('2019-10-25', 4, 6, 63000.00),
+('2019-09-25', 5, 7, 39000.00),
+('2019-10-25', 6, 8, 87000.00),
+('2019-09-25', 7, 9, 85000.00),
+('2019-08-25', 8, 10, 91000.00),
+('2019-08-25', 9, 1, 40000.00),
+('2019-08-25', 10, 2, 38000.00),
+
+('2019-10-26', 4, 6, 70000.00),
+('2019-09-26', 5, 7, 41000.00),
+('2019-10-26', 6, 8, 89000.00),
+('2019-09-26', 7, 9, 82000.00),
+('2019-08-26', 8, 10, 93500.00),
+('2019-08-26', 9, 1, 44000.00),
+('2019-08-26', 10, 2, 37500.00);
+
+ALTER TABLE salary
+    ADD CONSTRAINT salary_employe_id_employe_employe_id
+        FOREIGN KEY (employe_id) REFERENCES employe (employe_id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT;
+
+ALTER TABLE transport
+    ADD CONSTRAINT transport_transport_type_id_transport_type_transport_type_id
+        FOREIGN KEY (transport_type_id) REFERENCES transport_type (transport_type_id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT;
+
+ALTER TABLE job
+    ADD CONSTRAINT job_employe_id_employe_employe_id
+        FOREIGN KEY (employe_id) REFERENCES employe (employe_id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT,
+    ADD CONSTRAINT job_position_id_position_position_id
+        FOREIGN KEY (position_id) REFERENCES position (position_id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT;
+
+ALTER TABLE income
+    ADD CONSTRAINT income_employe_id_employe_employe_id
+        FOREIGN KEY (employe_id) REFERENCES employe (employe_id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT,
+    ADD CONSTRAINT income_transport_id_transport_transport_id
+        FOREIGN KEY (transport_id) REFERENCES transport (transport_id)
+            ON UPDATE CASCADE
+            ON DELETE RESTRICT;
+
+
